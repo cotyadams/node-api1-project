@@ -30,7 +30,7 @@ server.get('/api/users/:id', (req, res) => {
                     message: "The user with the specified ID does not exist"
                 })
             }
-            res.status(200).json(result)
+            else res.status(200).json(result)
         })
         .catch((err) => {
             res.status(500).json({
@@ -49,7 +49,7 @@ server.post('/api/users', (req, res) => {
                     message: "Please provide name and bio for the user"
                 })
             }
-            res.status(201).json(result);
+            else res.status(201).json(result);
         })
         .catch((err) => {
             res.status(500).json({
@@ -68,7 +68,7 @@ server.delete('/api/users/:id', (req, res) => {
                     message: "The user with the specified ID does not exist"
                 });
             }
-            res.status(200).json(result);
+            else res.status(200).json(result);
         })
         .catch((err) => {
             res.status(500).json({
@@ -89,12 +89,12 @@ server.put('/api/users/:id', (req, res) => {
                     message: "Please provide name and bio for the user"
                 })
             }
-            if (!result) {
+            else if (!result) {
                 res.status(404).json({
                     message: "The user with the specified ID does not exist"
                 })
             }
-            res.status(200).json(result)
+            else res.status(200).json(result)
         })
         .catch((err) => {
             res.status(500).json({
