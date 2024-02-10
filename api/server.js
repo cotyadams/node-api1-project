@@ -26,7 +26,11 @@ server.get('/api/users', (req, res) => {
 server.get('/api/users/:id', (req, res) => {
     User.findById(req.params.id)
         .then((result) => {
-            console.log('yes')
+            if (!result) {
+                res.status(404).json({
+                    message: "The user with the specified ID does not exist"
+                })
+            }
             res.status(200).json(result)
         })
         .catch((err) => {
@@ -56,6 +60,9 @@ server.post('/api/users', (req, res) => {
 server.delete('/api/users/:id', (req, res) => {
     User.remove(req.params.id)
         .then((result) => {
+            if (!result) {
+                res.status(404).json({ message: "The user with the specified ID does not exist" });
+            }
             res.status(200).json(result);
         })
         .catch((err) => {
